@@ -1,9 +1,23 @@
-import {createContext} from "react";
+import { createContext } from "react";
 
-let personData={
-    name:"sanjay v",
-    age:22
+interface UserContextValue {
+  user: {
+    name: string;
+    age: number;
+  };
+  updateUser: (obj: { name: string; age: number }) => void;
 }
-const context=createContext<typeof personData>(personData);
 
-export default context
+const initialUser: UserContextValue = {
+  user: {
+    name: "",
+    age: 0,
+  },
+  updateUser: () => {},
+};
+
+const UserContext = createContext<UserContextValue>(initialUser);
+
+export type userType = typeof initialUser;
+
+export default UserContext;
